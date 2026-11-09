@@ -1,11 +1,13 @@
+
 package bombastic;
+
 import bombastic.game.GameController;
 import bombastic.menu.mainmenu.MainMenuController;
-import javafx.scene.control.Label;
+import bombastic.menu.settingsmenu.SettingsMenuController;
+import bombastic.menu.chatmenu.ChatMenuController;
+
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import bombastic.menu.chatmenu.ChatMenuController;
-import bombastic.menu.settingsmenu.SettingsMenuController;
 
 public class Controller {
 
@@ -18,25 +20,32 @@ public class Controller {
 
     private State currentState;
 
-    public Controller() {
+    public Controller(Model model) {
 
         MainMenuController mainMenuController =
                 new MainMenuController(this::setState);
 
         mainMenu = mainMenuController.getView();
 
-        GameController gameController = new GameController(this::setState);
+        GameController gameController =
+                new GameController(this::setState);
+
         gameMenu = gameController.getView();
 
-        ChatMenuController chatMenuController = new ChatMenuController(this::setState);
+        SettingsMenuController settingsMenuController =
+                new SettingsMenuController(model, this::setState);
+
+        settingsMenu = settingsMenuController.getView();
+
+        ChatMenuController chatMenuController =
+                new ChatMenuController(this::setState);
+
         chatMenu = chatMenuController.getView();
 
-
-        SettingsMenuController settingsMenuController = new SettingsMenuController(this::setState);
-        settingsMenu = settingsMenuController.getView();
-        
-        
-
+        // Bind backgrounds to the shared model
+        mainMenu.backgroundProperty().bind(model.backgroundProperty());
+        settingsMenu.backgroundProperty().bind(model.backgroundProperty());
+        chatMenu.backgroundProperty().bind(model.backgroundProperty());
 
         root = new StackPane(
                 mainMenu,
@@ -57,8 +66,7 @@ public class Controller {
         settingsMenu.setVisible(false);
         chatMenu.setVisible(false);
 
-   
-
+      
         switch (currentState) {
 
             case MAIN_MENU_ACTIVE:

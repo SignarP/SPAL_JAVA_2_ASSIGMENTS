@@ -3,7 +3,6 @@ import bombastic.Controller;
 import bombastic.Model;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -11,13 +10,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        Controller controller = new Controller();
         Model model = new Model();
+        Controller controller = new Controller(model);
 
-        Region root = controller.getView();
-        root.setBackground(model.getBackground());
-
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(controller.getView(), 1000, 700);
 
         stage.setScene(scene);
         stage.setTitle("Bombastic Game");

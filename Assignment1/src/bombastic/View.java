@@ -14,6 +14,7 @@ public class View {
         this.stage = stage;
         model = new Model();
         scene = new Scene(new StackPane(), 1000, 700);
-    }
 
+    }
+    
 }

@@ -1,5 +1,8 @@
+
 package bombastic;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -9,21 +12,21 @@ import javafx.scene.layout.BackgroundSize;
 
 public class Model {
 
-    private final Background background;
+    private final SimpleObjectProperty<Background> background =
+            new SimpleObjectProperty<>(createBackground("bg1.png"));
 
-    public Model() {
-        var resource = Model.class.getResource("/resources/images/bg1.png");
+    private final SimpleStringProperty arena =
+            new SimpleStringProperty("Arena 1");
+
+    private Background createBackground(String imageName) {
+
+        var resource = Model.class.getResource("/resources/images/" + imageName);
+
         if (resource == null) {
-            throw new IllegalStateException("Image not found: /resources/images/bg1.png");
+            throw new IllegalStateException("Image not found: " + imageName);
         }
 
         Image image = new Image(resource.toExternalForm());
-        if (image.isError()) {
-            throw new IllegalStateException(
-                    "Failed to load image: /resources/images/bg1.png",
-                    image.getException()
-            );
-        }
 
         BackgroundImage backgroundImage = new BackgroundImage(
                 image,
@@ -32,10 +35,23 @@ public class Model {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false)
         );
-        background = new Background(backgroundImage);
+
+        return new Background(backgroundImage);
     }
 
-    public Background getBackground() {
+    public SimpleObjectProperty<Background> backgroundProperty() {
         return background;
+    }
+
+    public void setBackground(String imageName) {
+        background.set(createBackground(imageName));
+    }
+
+    public SimpleStringProperty arenaProperty() {
+        return arena;
+    }
+
+    public void setArena(String arenaName) {
+        arena.set(arenaName);
     }
 }
