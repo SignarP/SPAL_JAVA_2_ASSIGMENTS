@@ -12,6 +12,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class ChatMenuView extends StackPane {
 
@@ -32,7 +35,9 @@ public class ChatMenuView extends StackPane {
 
     public ChatMenuView build() {
 
-        Label title = new Label("Bombastic Chat");
+        Label title = new Label("Messages");
+        title.setFont(Font.font("System", FontWeight.BOLD, 32));
+        title.setTextFill(Color.RED);
 
         TextArea messages = new TextArea();
         messages.textProperty().bind(model.messagesProperty());
@@ -42,7 +47,11 @@ public class ChatMenuView extends StackPane {
         ListView<String> users = new ListView<>();
         users.setItems(model.usersProperty());
 
-        VBox userArea = new VBox(5, new Label("Players online"), users);
+        Label playersOnline = new Label("Players online");
+        playersOnline.setTextFill(Color.RED);
+        playersOnline.setFont(Font.font("System", FontWeight.BOLD, 18));
+
+        VBox userArea = new VBox(5, playersOnline, users);
         userArea.setPrefWidth(160);
 
         Button sendButton = new Button("Send");

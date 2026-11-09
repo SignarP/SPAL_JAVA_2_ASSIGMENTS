@@ -8,6 +8,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class SettingsMenuView extends StackPane {
 
@@ -35,10 +38,15 @@ public class SettingsMenuView extends StackPane {
     public SettingsMenuView build() {
 
         Label title = new Label("Settings");
-        title.setStyle("-fx-font-size: 36px; -fx-font-weight: bold;");
+        title.setFont(Font.font("System", FontWeight.BOLD, 36));
 
         Label backgroundLabel = new Label("Choose Background");
-        backgroundLabel.setStyle("-fx-font-size: 18px;");
+        backgroundLabel.setFont(Font.font("System",FontWeight.BOLD, 24));
+        backgroundLabel.setTextFill(Color.RED);
+
+        Label arenaLabel = new Label("Choose Arena");
+        arenaLabel.setFont(Font.font("System", FontWeight.BOLD, 24));
+        arenaLabel.setTextFill(Color.RED);
 
         ComboBox<String> backgroundBox = new ComboBox<>();
         backgroundBox.getItems().addAll(
@@ -57,8 +65,7 @@ public class SettingsMenuView extends StackPane {
             }
         });
 
-        Label arenaLabel = new Label("Choose Arena");
-        arenaLabel.setStyle("-fx-font-size: 18px;");
+      
 
         ComboBox<String> arenaBox = new ComboBox<>();
         arenaBox.getItems().addAll("Arena 1", "Arena 2", "Arena 3");
@@ -88,15 +95,11 @@ public class SettingsMenuView extends StackPane {
                 exitButton
         );
 
+
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(40));
         layout.setMaxWidth(450);
         layout.setMinHeight(400);
-
-        layout.setStyle(
-                "-fx-background-color: rgba(0, 0, 0, 0.65);" +
-                "-fx-background-radius: 15;"
-        );
 
         setAlignment(Pos.CENTER);
         getChildren().setAll(layout);

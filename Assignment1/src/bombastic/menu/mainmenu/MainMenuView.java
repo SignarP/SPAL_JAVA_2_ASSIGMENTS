@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class MainMenuView extends StackPane {
 
@@ -32,11 +35,8 @@ public class MainMenuView extends StackPane {
     public MainMenuView build() {
         Label title = new Label();
         title.textProperty().bind(titleText);
-        title.setStyle(
-                "-fx-font-size: 40px;" +
-                "-fx-font-weight: bold;" +
-                "-fx-text-fill: white;"
-        );
+        title.setFont(Font.font("System", FontWeight.BOLD, 32));
+        title.setTextFill(Color.WHITE);
 
         Button startButton = createButton("Start game", startGame);
         Button chatButton = createButton("Chat", openChat);
@@ -53,10 +53,7 @@ public class MainMenuView extends StackPane {
         );
         menu.setAlignment(Pos.CENTER);
         menu.setMaxWidth(1000);
-        menu.setStyle(
-                "-fx-background-color: rgba(0,0,0,0.05);" +
-                "-fx-padding: 40;"
-        );
+       
 
         setAlignment(Pos.CENTER);
         getChildren().setAll(menu);

@@ -9,8 +9,8 @@ public class ChatMenuModel {
     private final SimpleListProperty<String> users =
             new SimpleListProperty<>(FXCollections.observableArrayList(
                     "Signar",
-                    "Player2",
-                    "Player3"
+                    "Niels",
+                    "Christian"
             ));
 
     private final SimpleStringProperty messages =
