@@ -2,14 +2,14 @@ package bombastic.menu.mainmenu;
 
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
 
 public class MainMenuModel {
 
-    private final ReadOnlyStringWrapper title =
-            new ReadOnlyStringWrapper("BOMBASTIC");
+    private final SimpleStringProperty title = new SimpleStringProperty("Bombastic");
 
 
-    public ReadOnlyStringProperty titleProperty() {
-        return title.getReadOnlyProperty();
+    public SimpleStringProperty titleProperty() {
+        return title;
     }
 }
