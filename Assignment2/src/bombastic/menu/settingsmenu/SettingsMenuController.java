@@ -33,6 +33,6 @@ public class SettingsMenuController {
     }
 
     public SettingsMenuView getView() {
-        return view.build();
+        return view;
     }
 }

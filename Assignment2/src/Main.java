@@ -10,7 +10,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         Controller controller = new Controller();
-        Scene scene = new Scene(controller.getView(), 1000, 700);
+        Scene scene = new Scene(controller.getView(), 1280, 960);
 
         stage.setScene(scene);
         stage.setTitle("Bombastic Game");

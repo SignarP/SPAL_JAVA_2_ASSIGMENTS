@@ -8,7 +8,6 @@ public class MainMenuController {
 
     private final MainMenuModel menuModel;
     private final MainMenuView view;
-
     private final Consumer<State> changeState;
 
     public MainMenuController(Consumer<State> changeState) {
@@ -39,6 +38,6 @@ public class MainMenuController {
     }
 
     public MainMenuView getView() {
-        return view.build();
+        return view;
     }
 }

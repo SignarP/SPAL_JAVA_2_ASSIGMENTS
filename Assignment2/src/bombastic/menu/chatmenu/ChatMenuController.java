@@ -38,6 +38,6 @@ public class ChatMenuController {
     }
 
     public ChatMenuView getView() {
-        return view.build();
+        return view;
     }
 }
